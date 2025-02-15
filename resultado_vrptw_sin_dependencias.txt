@@ -1,0 +1,5 @@
+Solución Simulación de Simplex:
+Ruta: 0 -> 4 -> 2 -> 3 -> 1 -> 0, Costo: 107
+
+Solución Ramificación y Acotación:
+Ruta: 0 -> 4 -> 2 -> 3 -> 1 -> 0, Costo: 107
