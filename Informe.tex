@@ -106,25 +106,27 @@ Minimizar el costo total de las rutas, incluyendo penalizaciones por violaciones
     \]
 \end{enumerate}
 
-\section{Objetivos Adicionales}
+\section{Métodos de Optimización}
 
-\subsection{Minimizar el Tiempo Total}
+\subsection{Método Simplex}
+El \textbf{Método Simplex} es un algoritmo eficiente para resolver problemas de programación lineal con muchas restricciones. En el contexto del VRPTW, se utiliza para encontrar una solución óptima en términos de costos de transporte, respetando todas las restricciones impuestas.
 
-\[
-\text{Minimizar} \quad T = \sum_{k \in K} \sum_{i \in V} w_{ik}
-\]
+Este método convierte el problema en un sistema de ecuaciones lineales y lo resuelve iterativamente moviéndose a lo largo de los vértices de la región factible en busca de la solución óptima.
 
-\subsection{Balancear Cargas}
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{simplex_visualization.png}
+\end{center}
+\textit{Figura 1: Representación gráfica del método Simplex en la optimización de rutas.}
 
-\[
-\text{Minimizar} \quad B = \sum_{k \in K} \left( \sum_{i \in V} y_{ik} - \frac{\sum_{i \in V} d_i}{|K|} \right)^2
-\]
+\subsection{Algoritmo de Ramificación y Acotación (Branch and Bound)}
+El \textbf{Algoritmo de Ramificación y Acotación (Branch and Bound)} es un método exacto utilizado para resolver problemas de programación entera, como la asignación de rutas en el VRPTW. Funciona dividiendo el problema en subproblemas más pequeños (\textbf{ramificación}) y eliminando aquellas soluciones que no pueden ser óptimas (\textbf{acotación}).
 
-\subsection{Maximizar la Satisfacción del Cliente}
+El algoritmo explora todas las posibles soluciones, pero de manera eficiente, descartando ramas enteras del árbol de búsqueda cuando se determina que no pueden mejorar la solución óptima encontrada hasta el momento.
 
-\[
-\text{Maximizar} \quad S = -\left( \alpha \sum_{k \in K} \sum_{i \in V} \max(a_i - w_{ik}, 0) + \beta \sum_{k \in K} \sum_{i \in V} \max(w_{ik} - b_i, 0) \right)
-\]
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{branch_bound_visualization.png}
+\end{center}
+\textit{Figura 2: Representación gráfica del algoritmo de Ramificación y Acotación.}
 
 \section{Gráficos}
 
@@ -132,7 +134,7 @@ A continuación, se presenta un ejemplo gráfico de una solución al VRPTW con l
 
 \begin{itemize}
     \item El nodo central (0) representa el depósito.
-    \item Los nodos periféricos (1, 2, 3, 4) representan los clientes.
+    \item Los nodos periféricos representan los clientes.
     \item Las flechas representan las rutas de los vehículos.
     \item Las etiquetas en los nodos indican la ventana de tiempo de cada cliente.
 \end{itemize}
@@ -140,5 +142,8 @@ A continuación, se presenta un ejemplo gráfico de una solución al VRPTW con l
 \begin{center}
 \includegraphics[width=1.0\textwidth]{vrptw_large_graph_with_capacity.png}
 \end{center}
+
+\section{Conclusión}
+En este documento se han presentado los fundamentos teóricos y matemáticos del problema VRPTW, junto con los métodos de optimización aplicables. El método Simplex permite resolver problemas de programación lineal de manera eficiente, mientras que el algoritmo de Ramificación y Acotación permite encontrar soluciones óptimas en problemas de programación entera. Juntos, estos métodos constituyen herramientas clave para abordar la optimización de rutas de entrega con restricciones de tiempo y capacidad.
 
 \end{document}
